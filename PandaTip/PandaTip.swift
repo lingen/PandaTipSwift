@@ -24,6 +24,8 @@ public class PandaTip {
     
     var tipView:UITipView?
     
+    var random:String?
+    
     public init() {
         
     }
@@ -100,12 +102,21 @@ public class PandaTip {
             self.tipView?.frame = self.tipPosition.showFrame(tip: self.tipView!)
         }
         
+        self.random = UUID().uuidString
+        self.dismissTipView(random: self.random!) { (random) in
+            if self.random! == random {
+                UIView.animate(withDuration: 0.3, animations: {
+                    self.tipView?.frame = self.tipPosition.hiddenFrame(tip:self.tipView!)
+                }, completion: { (result) in
+                    self.tipView?.removeFromSuperview()
+                })
+            }
+        }
+    }
+    
+    private func dismissTipView(random:String,_ progress:@escaping (_ random:String)->()){
         DispatchQueue.main.asyncAfter(deadline:  .now() + 1.5) {
-            UIView.animate(withDuration: 0.3, animations: {
-                self.tipView?.frame = self.tipPosition.hiddenFrame(tip:self.tipView!)
-            }, completion: { (result) in
-                self.tipView?.removeFromSuperview()
-            })
+            progress(random)
         }
     }
 }

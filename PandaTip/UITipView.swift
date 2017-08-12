@@ -122,18 +122,13 @@ class UITipView: UIView {
         let font:UIFont = (titleView?.font!)!
         size = text!.boundingRect(with: CGSize(width: width, height: CGFloat.greatestFiniteMagnitude), options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: [NSAttributedStringKey.font: font], context: nil);
         
-        var width_ = size.width
         var height_ = size.height
-        
-        if width_ < 30 {
-            width_ = 30
-        }
         
         if height_ < 30 {
             height_ = 30
         }
         
-        return CGSize(width: width_, height: height_)
+        return CGSize(width: size.width, height: height_)
     }
     
     // MARK: 对外公开的方法
