@@ -60,9 +60,7 @@ class UITipView: UIView {
     func update(msg:String,icon:TipImage){
         titleView?.text = msg
         if icon.image() != nil {
-            iconView = UIImageView(image: icon.image()!)
-        }else{
-            iconView = UIImageView(image: UIImage(named: INFO_ICON))
+            iconView?.image = icon.image()
         }
     }
     
