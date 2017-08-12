@@ -92,29 +92,30 @@ class UITipView: UIView {
     private func layoutIconView(){
         iconView?.translatesAutoresizingMaskIntoConstraints = false
         
-        let centerY = NSLayoutConstraint(item: iconView!, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1.0, constant: 0)
+        let centerY = iconView?.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: 0)
         
-        let leading = NSLayoutConstraint(item: iconView!, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1.0, constant: 10)
+        let leading = iconView?.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10)
         
-        let width = NSLayoutConstraint(item: iconView!, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 25)
+        let width = iconView?.widthAnchor.constraint(equalToConstant: 25)
         
-        let height = NSLayoutConstraint(item: iconView!, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 25)
+        let height = iconView?.heightAnchor.constraint(equalToConstant: 25)
         
-        self.addConstraints([centerY,leading,width,height])
+        NSLayoutConstraint.activate([centerY!,leading!,width!,height!])
+        
     }
     
     private func layoutTitleView(){
         titleView?.translatesAutoresizingMaskIntoConstraints = false
         
-        let centerY = NSLayoutConstraint(item: titleView!, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1.0, constant: 0)
+        let centerY = titleView?.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: 0)
         
-        let leading = NSLayoutConstraint(item: titleView!, attribute: .leading, relatedBy: .equal, toItem: iconView, attribute: .trailing, multiplier: 1.0, constant: 10)
+        let leading = titleView?.leadingAnchor.constraint(equalTo: (self.iconView?.trailingAnchor)!, constant: 10)
         
-        let trailing = NSLayoutConstraint(item: titleView!, attribute: .trailing, relatedBy: .lessThanOrEqual, toItem: self, attribute: .trailing, multiplier: 1.0, constant: -10)
+        let trailing = titleView?.trailingAnchor.constraint(lessThanOrEqualTo: self.trailingAnchor, constant: -10)
         
-        let height = NSLayoutConstraint(item: titleView!, attribute: .height, relatedBy: .greaterThanOrEqual, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 15)
+        let height = titleView?.heightAnchor.constraint(greaterThanOrEqualToConstant: 15)
         
-        self.addConstraints([centerY,leading,trailing,height])
+        NSLayoutConstraint.activate([centerY!,leading!,trailing!,height!])
     }
     
     
