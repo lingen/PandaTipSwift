@@ -107,15 +107,12 @@ class UITipView: UIView {
     private func layoutTitleView(){
         titleView?.translatesAutoresizingMaskIntoConstraints = false
         
-        let centerY = titleView?.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: 0)
-        
-        let leading = titleView?.leadingAnchor.constraint(equalTo: (self.iconView?.trailingAnchor)!, constant: 10)
-        
-        let trailing = titleView?.trailingAnchor.constraint(lessThanOrEqualTo: self.trailingAnchor, constant: -10)
-        
-        let height = titleView?.heightAnchor.constraint(greaterThanOrEqualToConstant: 15)
-        
-        NSLayoutConstraint.activate([centerY!,leading!,trailing!,height!])
+        NSLayoutConstraint.activate([
+            (titleView?.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: 0))!,
+            (titleView?.leadingAnchor.constraint(equalTo: (self.iconView?.trailingAnchor)!, constant: 10))!,
+            (titleView?.trailingAnchor.constraint(lessThanOrEqualTo: self.trailingAnchor, constant: -10))!,
+            (titleView?.heightAnchor.constraint(greaterThanOrEqualToConstant: 15))!
+        ])
     }
     
     
