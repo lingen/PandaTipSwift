@@ -43,18 +43,6 @@ class UITipView: UIView {
     
     var titleView:UILabel?
     
-    var msg:String?
-    
-    var icon:UIImage?
-    
-    init(msg:String,icon:TipImage) {
-        self.msg = msg
-        self.icon = icon.image()
-        super.init(frame: CGRect.zero)
-        setUpView()
-        layoutViews()
-    }
-    
     init() {
         super.init(frame: CGRect.zero)
         setUpView()
@@ -69,17 +57,22 @@ class UITipView: UIView {
         super.init(frame: frame)
     }
     
+    func update(msg:String,icon:TipImage){
+        titleView?.text = msg
+        if icon.image() != nil {
+            iconView = UIImageView(image: icon.image()!)
+        }else{
+            iconView = UIImageView(image: UIImage(named: INFO_ICON))
+        }
+    }
+    
     // MARK: View元素初始化
     private func setUpView(){
         
         self.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.6)
         
         if iconView == nil {
-            if icon != nil {
-                iconView = UIImageView(image: icon!)
-            }else{
-                iconView = UIImageView(image: UIImage(named: INFO_ICON))
-            }
+            iconView = UIImageView(image: UIImage(named: INFO_ICON))
             self.addSubview(iconView!)
         }
         
@@ -88,7 +81,6 @@ class UITipView: UIView {
             titleView?.font = UIFont.systemFont(ofSize: 14)
             titleView?.textColor = UIColor.white
             titleView?.numberOfLines = 0
-            titleView?.text = msg
             self.addSubview(titleView!)
         }
     }

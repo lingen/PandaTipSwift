@@ -22,6 +22,8 @@ public class PandaTip {
     
     var loadingView:UILoadingView?
     
+    var tipView:UITipView?
+    
     public init() {
         
     }
@@ -35,6 +37,7 @@ public class PandaTip {
         self.textColor = textColor
         self.backgroundColor = backgroundColor
     }
+    
     
     public func show(){
         if loadingView == nil {
@@ -76,29 +79,32 @@ public class PandaTip {
     }
     
     public func show(msg:String,icon:TipImage){
-        let tip = UITipView(msg: msg, icon: icon)
+        if tipView == nil {
+            tipView = UITipView()
+        }
+        tipView?.update(msg: msg, icon: icon)
         if textColor != nil {
-            tip.setTextColor(color: textColor!)
+            tipView?.setTextColor(color: textColor!)
         }
         
         if backgroundColor != nil {
-            tip.setBackgroundColor(color: backgroundColor!)
+            tipView?.setBackgroundColor(color: backgroundColor!)
         }
         
-        tip.frame = self.tipPosition.hiddenFrame(tip:tip)
+        tipView?.frame = self.tipPosition.hiddenFrame(tip:tipView!)
         let window = UIApplication.shared.windows[0]
-        window.addSubview(tip)
-        window.bringSubview(toFront: tip)
+        window.addSubview(tipView!)
+        window.bringSubview(toFront: tipView!)
         
         UIView.animate(withDuration: 0.3) {
-            tip.frame = self.tipPosition.showFrame(tip: tip)
+            self.tipView?.frame = self.tipPosition.showFrame(tip: self.tipView!)
         }
         
         DispatchQueue.main.asyncAfter(deadline:  .now() + 1.5) {
             UIView.animate(withDuration: 0.3, animations: {
-                tip.frame = self.tipPosition.hiddenFrame(tip:tip)
+                self.tipView?.frame = self.tipPosition.hiddenFrame(tip:self.tipView!)
             }, completion: { (result) in
-                tip.removeFromSuperview()
+                self.tipView?.removeFromSuperview()
             })
         }
     }
