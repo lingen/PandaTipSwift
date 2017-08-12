@@ -17,6 +17,7 @@
 		673269761F3E0B14001D7854 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 673269681F3E0B14001D7854 /* Main.storyboard */; };
 		673269771F3E0B14001D7854 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6732696A1F3E0B14001D7854 /* Info.plist */; };
 		673269781F3E0B14001D7854 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6732696B1F3E0B14001D7854 /* ViewController.swift */; };
+		67D73E931F3E7F9100359311 /* UILoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D73E921F3E7F9100359311 /* UILoadingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +44,7 @@
 		6732696A1F3E0B14001D7854 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6732696B1F3E0B14001D7854 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		6732696C1F3E0B14001D7854 /* T.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = T.xcodeproj; sourceTree = "<group>"; };
+		67D73E921F3E7F9100359311 /* UILoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILoadingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,9 +78,10 @@
 		6732693B1F3DF5FB001D7854 /* PandaTip */ = {
 			isa = PBXGroup;
 			children = (
+				6732693C1F3DF5FB001D7854 /* PandaTip.h */,
 				673269531F3DF629001D7854 /* PandaTip.swift */,
 				673269541F3DF629001D7854 /* UITipView.swift */,
-				6732693C1F3DF5FB001D7854 /* PandaTip.h */,
+				67D73E921F3E7F9100359311 /* UILoadingView.swift */,
 				6732693D1F3DF5FB001D7854 /* Info.plist */,
 				673269591F3DF6D6001D7854 /* Media.xcassets */,
 			);
@@ -221,6 +224,7 @@
 				673269561F3DF629001D7854 /* UITipView.swift in Sources */,
 				673269781F3E0B14001D7854 /* ViewController.swift in Sources */,
 				673269551F3DF629001D7854 /* PandaTip.swift in Sources */,
+				67D73E931F3E7F9100359311 /* UILoadingView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

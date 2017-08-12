@@ -20,6 +20,8 @@ public class PandaTip {
     
     var tipPosition:TipPosition = TipPosition.Top
     
+    var loadingView:UILoadingView?
+    
     public init() {
         
     }
@@ -32,6 +34,33 @@ public class PandaTip {
         self.tipPosition = tipPosition
         self.textColor = textColor
         self.backgroundColor = backgroundColor
+    }
+    
+    public func show(){
+        if loadingView == nil {
+            loadingView = UILoadingView()
+            loadingView?.frame = CGRect(x: UIScreen.main.bounds.width / 2, y: UIScreen.main.bounds.height / 2, width: 0, height: 0)
+        }
+        
+        loadingView?.startLoading()
+        
+        let window = UIApplication.shared.windows[0]
+        window.addSubview(loadingView!)
+        window.bringSubview(toFront: loadingView!)
+        
+        UIView.animate(withDuration: 0.5) {
+            self.loadingView?.frame = CGRect(x: (UIScreen.main.bounds.width - 80) / 2, y: (UIScreen.main.bounds.height - 80) / 2, width: 80, height: 80)
+        }
+    }
+    
+    public func dismiss(){
+        loadingView?.stopLoading()
+        
+        UIView.animate(withDuration: 0.4, animations: {
+            self.loadingView?.frame = CGRect(x: UIScreen.main.bounds.width / 2, y: UIScreen.main.bounds.height / 2, width: 0, height: 0)
+        }) { (result) in
+            self.loadingView?.removeFromSuperview()
+        }
     }
     
     public func showInfoTip(msg:String) {
@@ -111,7 +140,7 @@ public enum TipPosition {
         switch self {
         case .Top:
             let height = tip.estimateHeight(width: DEVICE_WIDTH - 80).height
-            return CGRect(x: 0 - DEVICE_WIDTH, y: STATUS_BAR_HEIGHT, width:DEVICE_WIDTH, height: height)
+            return CGRect(x: 0, y: 0 - height, width:DEVICE_WIDTH, height: height)
         case .Bottom:
             let height = tip.estimateHeight(width: DEVICE_WIDTH - 80).height
             return CGRect(x: 0, y: DEVICE_HEIGHT, width:DEVICE_WIDTH, height: height)
